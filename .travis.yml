@@ -7,6 +7,7 @@ before_script:
 bundler_args: "--without development system_tests"
 before_install: rm Gemfile.lock || true
 script:
+  # - bundle exec rake download
   - bundle exec rake fingerprint
 notifications:
   email: false
