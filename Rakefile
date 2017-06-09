@@ -25,4 +25,3 @@ task :download do
     File.write("GPGKEYS/#{info[:name]}", content)
   end
 end
-
