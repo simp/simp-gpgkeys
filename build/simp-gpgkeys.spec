@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.0.1
+Version: 4.0.0
 Release: 0
 License: Public Domain
 Group: Applications/System
@@ -102,6 +102,11 @@ if [ -d "${dir}/GPGKEYS" ]; then
 fi
 
 %changelog
+* Fri Jun 09 2017 Nick Miller <nick.miller@onyxpoint.com> - 4.0.0
+- simp-gpgkeys is now its own module
+- Added a yaml file with a download source and a fingerprint to check cert integrity
+  - And a travis file to check them
+
 * Thu Mar 09 2017 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.0.1-0
 - Added the updated Grafana GPG key and renamed the old one to note its legacy
   status
