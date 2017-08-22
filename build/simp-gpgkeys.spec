@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 3.0.2
-Release: 1
+Release: 0
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -102,7 +102,7 @@ if [ -d "${dir}/GPGKEYS" ]; then
 fi
 
 %changelog
-* Mon Aug 21 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 3.0.2-1
+* Mon Aug 21 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 3.0.2-0
 - Added the postgresql96 GPG key
 
 * Fri Jun 09 2017 Nick Miller <nick.miller@onyxpoint.com> - 3.0.1-1
