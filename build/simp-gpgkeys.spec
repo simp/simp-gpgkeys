@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.0.2
+Version: 3.0.3
 Release: 0
 License: Public Domain
 Group: Applications/System
@@ -93,15 +93,11 @@ fi
 chown -R root:48 ${dir}/GPGKEYS/
 find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
 
-%postun
-#!/bin/bash
-
-dir='/var/www/yum/SIMP'
-if [ -d "${dir}/GPGKEYS" ]; then
-  find -P "${dir}/GPGKEYS/" -type f -xdev -xautofs -delete
-fi
-
 %changelog
+* Wed Aug 23 2017 Nick Markowski <nmarkowski@keywcorp.com> - 3.0.3-0
+- Removed postun section, which removed all keys from /var/www/yum/SIMP/GPGKEYS
+  on upgrade.
+
 * Mon Aug 21 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 3.0.2-0
 - Added the postgresql96 GPG key
 
