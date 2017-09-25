@@ -94,6 +94,10 @@ chown -R root:48 ${dir}/GPGKEYS/
 find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
 
 %changelog
+* Fri Sep 22 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 3.0.3-0
+- Fix changelog/version mismatch which resulted in the release of
+  a 3.0.2 tag for which the RPM version was actually 3.0.3.
+
 * Wed Aug 23 2017 Nick Markowski <nmarkowski@keywcorp.com> - 3.0.2-0
 - Removed postun section, which removed all keys from /var/www/yum/SIMP/GPGKEYS
   on upgrade.
