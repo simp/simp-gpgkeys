@@ -1,17 +1,42 @@
 ---
 language: ruby
-sudo: false
 cache: bundler
-before_script:
-- bundle update
-bundler_args: "--without development system_tests"
-before_install: rm Gemfile.lock || true
-script:
-  # - bundle exec rake download
-  - bundle exec rake fingerprint
+sudo: false
+
+bundler_args: --without development system_tests --path .vendor
+
 notifications:
   email: false
-rvm:
-- 2.1.9
-matrix:
-  fast_finish: true
+
+addons:
+  apt:
+    packages:
+      - rpm
+
+before_install:
+  - rm -f Gemfile.lock
+
+jobs:
+  include:
+    - stage: check
+      rvm: 2.4.1
+      script:
+        - bundle exec rake fingerprint
+        - bundle exec rake pkg:compare_latest_tag
+        - bundle exec rake pkg:create_tag_changelog
+
+    - stage: deploy
+      rvm: 2.4.1
+      script:
+        - true
+      before_deploy:
+        - "export SPECFILE_VERSION=`rpm -q --specfile build/*.spec --queryformat '%{VERSION}'`"
+        - '[[ $TRAVIS_TAG =~ ^${SPECFILE_VERSION}$ ]]'
+      deploy:
+        - provider: releases
+          api_key:
+              secure: "INSERTVALIDKEYHEREPLEASE"
+          skip_cleanup: true
+          on:
+            tags: true
+            condition: '($SKIP_PUBLISH != true)'
