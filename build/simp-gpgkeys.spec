@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.0.3
+Version: 3.0.4
 Release: 0
 License: Public Domain
 Group: Applications/System
@@ -94,6 +94,9 @@ chown -R root:48 ${dir}/GPGKEYS/
 find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
 
 %changelog
+* Mon Sep 17 2018 Brandon Riden <brandon.riden@onyxpoint.com> - 3.0.4-0
+- Update SIMP-6 Release Key to include new signatures
+
 * Fri Sep 22 2017 Liz Nemsick <lnemsick.simp@gmail.com> - 3.0.3-0
 - Fix changelog/version mismatch which resulted in the release of
   a 3.0.2 tag for which the RPM version was actually 3.0.3.
