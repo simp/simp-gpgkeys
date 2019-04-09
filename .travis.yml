@@ -19,14 +19,14 @@ before_install:
 jobs:
   include:
     - stage: check
-      rvm: 2.4.1
+      rvm: 2.4.5
       script:
         - bundle exec rake fingerprint
         - bundle exec rake pkg:compare_latest_tag
         - bundle exec rake pkg:create_tag_changelog
 
     - stage: deploy
-      rvm: 2.4.1
+      rvm: 2.4.5
       script:
         - true
       before_deploy:
