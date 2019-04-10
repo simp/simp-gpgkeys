@@ -1,5 +1,5 @@
 # ------------------------------------------------------------------------------
-# NOTE: SIMP Puppet rake tasks support ruby 2.1.9
+# NOTE: SIMP Puppet rake tasks support ruby 2.4.5
 # ------------------------------------------------------------------------------
 gem_sources = ENV.fetch('GEM_SERVERS','https://rubygems.org').split(/[, ]+/)
 
@@ -11,7 +11,7 @@ group :test do
   gem 'metadata-json-lint'
   # Ruby code coverage
   gem 'simplecov'
-  gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.2', '< 6.0'])
+  gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.8', '< 6.0'])
 end
 
 group :development do

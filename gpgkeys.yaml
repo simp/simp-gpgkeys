@@ -7,10 +7,6 @@
   :name: RPM-GPG-KEY-CentOS-7
   :fingerprint: 6341 AB27 53D7 8A78 A7C2  7BB1 24C6 A8A7 F4A8 0EB5
   :source_url: http://vault.centos.org/RPM-GPG-KEY-CentOS-7
-:elasticsearch:
-  :name: RPM-GPG-KEY-elasticsearch
-  :fingerprint: 4609 5ACC 8548 582C 1A26  99A9 D27D 666C D88E 42B4
-  :source_url: https://pgp.mit.edu/pks/lookup?op=get&search=0xD27D666CD88E42B4 #bad
 :EPEL-6:
   :name: RPM-GPG-KEY-EPEL-6
   :fingerprint: 8C3B E96A F230 9184 DA5C  0DAE 3B49 DF2A 0608 B895
@@ -27,14 +23,6 @@
   :name: RPM-GPG-KEY-fedora-26-primary
   :fingerprint: E641 850B 77DF 4353 78D1  D7E2 812A 6B4B 64DA B85D
   :source_url: https://getfedora.org/static/64DAB85D.txt
-:grafana:
-  :name: RPM-GPG-KEY-grafana
-  :fingerprint: 4E40 DDF6 D76E 284A 4A67  80E4 8C8C 34C5 2409 8CB6
-  :source_url: https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
-:grafana-legacy:
-  :name: RPM-GPG-KEY-grafana-legacy
-  :fingerprint: 0C53 F985 09C5 1C6C FCB5  C4FC 30A3 D772 3DD1 8BDD
-  :source_url: https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana-old #bad
 :PGDG-94:
   :name: RPM-GPG-KEY-PGDG-94
   :fingerprint: 68C9 E2B9 1A37 D136 FE74  D176 1F16 D2E1 442D F0F8

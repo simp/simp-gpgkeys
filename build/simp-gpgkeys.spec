@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.0.4
+Version: 3.1.0
 Release: 0
 License: Public Domain
 Group: Applications/System
@@ -94,6 +94,9 @@ chown -R root:48 ${dir}/GPGKEYS/
 find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
 
 %changelog
+* Tue Apr 09 2019 Joseph Sharkey <shark.bruhaha@gmail.com> - 3.1.0-0
+- Removed Elastic-search and Grafana GPG keys
+
 * Mon Sep 17 2018 Brandon Riden <brandon.riden@onyxpoint.com> - 3.0.4-0
 - Update SIMP-6 Release Key to include new signatures
 
