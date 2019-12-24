@@ -11,13 +11,10 @@ group :test do
   gem 'metadata-json-lint'
   # Ruby code coverage
   gem 'simplecov'
-  gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.8', '< 6.0'])
+  gem 'simp-rake-helpers', ENV.fetch('SIMP_RAKE_HELPERS_VERSION', ['>= 5.9', '< 6.0'])
 end
 
 group :development do
-  gem 'travis'
-  gem 'travis-lint'
-  gem 'travish'
   gem 'pry'
   gem 'pry-doc'
 end
@@ -25,5 +22,5 @@ end
 group :system_tests do
   gem 'beaker'
   gem 'beaker-rspec'
-  gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', ['>= 1.10', '< 2.0'])
+  gem 'simp-beaker-helpers', ENV.fetch('SIMP_BEAKER_HELPERS_VERSION', ['>= 1.17', '< 2.0'])
 end

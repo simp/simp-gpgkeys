@@ -7,6 +7,10 @@
   :name: RPM-GPG-KEY-CentOS-7
   :fingerprint: 6341 AB27 53D7 8A78 A7C2  7BB1 24C6 A8A7 F4A8 0EB5
   :source_url: http://vault.centos.org/RPM-GPG-KEY-CentOS-7
+:CentOS-8:
+  :name: RPM-GPG-KEY-CentOS-8
+  :fingerprint: 99DB 70FA E1D7 CE22 7FB6  4882 05B5 55B3 8483 C65D
+  :source_url: https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
 :EPEL-6:
   :name: RPM-GPG-KEY-EPEL-6
   :fingerprint: 8C3B E96A F230 9184 DA5C  0DAE 3B49 DF2A 0608 B895
@@ -15,14 +19,10 @@
   :name: RPM-GPG-KEY-EPEL-7
   :fingerprint: 91E9 7D7C 4A5E 96F1 7F3E  888F 6A2F AEA2 352C 64E5
   :source_url: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-:fedora-25-primary:
-  :name: RPM-GPG-KEY-fedora-25-primary
-  :fingerprint: C437 DCCD 558A 66A3 7D6F  4372 4089 D8F2 FDB1 9C98
-  :source_url: https://getfedora.org/static/FDB19C98.txt
-:fedora-26-primary:
-  :name: RPM-GPG-KEY-fedora-26-primary
-  :fingerprint: E641 850B 77DF 4353 78D1  D7E2 812A 6B4B 64DA B85D
-  :source_url: https://getfedora.org/static/64DAB85D.txt
+:EPEL-8:
+  :name: RPM-GPG-KEY-EPEL-8
+  :fingerprint: 94E2 79EB 8D8F 25B2 1810  ADF1 21EA 45AB 2F86 D6A1
+  :source_url: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-8
 :PGDG-94:
   :name: RPM-GPG-KEY-PGDG-94
   :fingerprint: 68C9 E2B9 1A37 D136 FE74  D176 1F16 D2E1 442D F0F8
@@ -34,7 +34,7 @@
 :puppetlabs:
   :name: RPM-GPG-KEY-puppetlabs
   :fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30
-  :source_url: https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs #bad
+  :source_url: https://yum.puppetlabs.com/RPM-GPG-KEY-puppetlabs
 :redhat-release:
   :name: RPM-GPG-KEY-redhat-release
   :fingerprint: 567E 347A D004 4ADE 55BA  8A5F 199E 2F91 FD43 1D51
@@ -42,8 +42,8 @@
 :SIMP:
   :name: RPM-GPG-KEY-SIMP
   :fingerprint: 103B 439D ADF4 AE61 FA69  98AF EE8C 77AF 7DA6 F216
-  :source_url: https://raw.githubusercontent.com/NationalSecurityAgency/SIMP/master/GPGKEYS/RPM-GPG-KEY-SIMP
+  :source_url: https://download.simp-project.com/SIMP/GPGKEYS/RPM-GPG-KEY-SIMP
 :SIMP-6:
   :name: RPM-GPG-KEY-SIMP-6
   :fingerprint: F21E A54D 9C5A A9A5 AF7F  E002 1B5B 16A2 7667 220F
-  :source_url: https://packagecloud.io/simp-project/6_X/gpgkey #bad
+  :source_url: https://download.simp-project.com/SIMP/GPGKEYS/RPM-GPG-KEY-SIMP-6
