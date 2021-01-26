@@ -22,6 +22,7 @@ variables:
 # - Try to use cached and local resources before downloading dependencies
 # --------------------------------------
 .setup_bundler_env: &setup_bundler_env
+  image: 'ruby:2.5' # TODO: Default image for now, should add in images when this repository is ready for matrix testing.
   cache:
     untracked: true
     key: "${CI_PROJECT_NAMESPACE}_ruby-${MATRIX_RUBY_VERSION}_bundler"
