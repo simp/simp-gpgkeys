@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.1.1
+Version: 3.1.2
 Release: 0
 License: Public Domain
 Group: Applications/System
@@ -47,23 +47,23 @@ export PATH=/opt/puppetlabs/bin:$PATH
 
 # If we're a SIMP server, place the keys into the appropriate web directory
 
-dir='/var/www/yum/SIMP'
+dir='/var/www/yum/SIMP/GPGKEYS'
 if [ ! -d $dir ]; then
-  mkdir -p -m 0755 "${dir}/GPGKEYS"
+  mkdir -p -m 0755 "${dir}"
 fi
-cp %{prefix}/RPM-GPG-KEY* "${dir}/GPGKEYS"
+cp %{prefix}/RPM-GPG-KEY* "${dir}"
 
 # Get rid of any files that are present that aren't in the new directory.
 # Ensure that we don't have issues with operations in progress.
 old_key_list=`mktemp --suffix=.simp_gpgkeys`
 new_key_list=`mktemp --suffix=.simp_gpgkeys`
 
-find "${dir}/GPGKEYS" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $old_key_list
+find "${dir}" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $old_key_list
 find "%{prefix}" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $new_key_list
 
 for file in `comm -23 $old_key_list $new_key_list`; do
-  if [ -f "${dir}/GPGKEYS/${file}" ]; then
-    rm -f "${dir}/GPGKEYS/${file}"
+  if [ -f "${dir}/${file}" ]; then
+    rm -f "${dir}/${file}"
   fi
 done
 
@@ -85,15 +85,19 @@ else
 fi
 if [ -n "$search_string" ]; then
   for file in `find /etc/pki/rpm-gpg/ -regextype posix-extended -regex ${search_string}`; do
-    cp ${file} ${dir}/GPGKEYS
+    cp ${file} ${dir}
   done
 fi
 
 # Ensure GPG permissions
-chown -R root:48 ${dir}/GPGKEYS/
-find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
+chown -R root:48 ${dir}
+find ${dir} -type f -exec chmod 640 {} +
 
 %changelog
+* Thu Apr 22 2021 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.2-0
+- If the /var/www/yum/SIMP directory existed but not GPGKEYS under it the
+  copy of the keys failed.
+
 * Tue Dec 17 2019 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.1-0
 - Added the CentOS8 and EPEL 8 GPGkeys
 
