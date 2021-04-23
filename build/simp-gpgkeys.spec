@@ -95,8 +95,11 @@ fi
 
 %changelog
 * Thu Apr 22 2021 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.2-0
-- If the /var/www/yum/SIMP directory existed but not GPGKEYS under it the
-  copy of the keys failed.
+- Fixed a bug where the GPG keys were copied into /var/www/yum/SIMP/GPGKEYS/
+  during the post install, even if /var/www/yum/SIMP/ did not exist.
+- Fixed a bug where the copy of the GPG keys into /var/www/yum/SIMP/GPGKEYS/
+  during the post install failed, when /var/www/yum/SIMP/ existed but
+  /var/www/yum/SIMP/GPGKEYS/ did not exist.
 
 * Tue Dec 17 2019 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.1-0
 - Added the CentOS8 and EPEL 8 GPGkeys
