@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 3.1.2
-Release: 0
+Release: 1
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -94,7 +94,7 @@ if [ -d '/var/www/yum/SIMP' ]; then
 fi
 
 %changelog
-* Thu Apr 22 2021 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.2-0
+* Thu Apr 22 2021 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.2-1
 - Fixed a bug where the GPG keys were copied into /var/www/yum/SIMP/GPGKEYS/
   during the post install, even if /var/www/yum/SIMP/ did not exist.
 - Fixed a bug where the copy of the GPG keys into /var/www/yum/SIMP/GPGKEYS/
