@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.1.1
-Release: 0
+Version: 3.1.2
+Release: 1
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
@@ -46,54 +46,61 @@ cp GPGKEYS/* %{buildroot}/%{prefix}
 export PATH=/opt/puppetlabs/bin:$PATH
 
 # If we're a SIMP server, place the keys into the appropriate web directory
-
-dir='/var/www/yum/SIMP'
-if [ ! -d $dir ]; then
-  mkdir -p -m 0755 "${dir}/GPGKEYS"
-fi
-cp %{prefix}/RPM-GPG-KEY* "${dir}/GPGKEYS"
-
-# Get rid of any files that are present that aren't in the new directory.
-# Ensure that we don't have issues with operations in progress.
-old_key_list=`mktemp --suffix=.simp_gpgkeys`
-new_key_list=`mktemp --suffix=.simp_gpgkeys`
-
-find "${dir}/GPGKEYS" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $old_key_list
-find "%{prefix}" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $new_key_list
-
-for file in `comm -23 $old_key_list $new_key_list`; do
-  if [ -f "${dir}/GPGKEYS/${file}" ]; then
-    rm -f "${dir}/GPGKEYS/${file}"
+if [ -d '/var/www/yum/SIMP' ]; then
+  dir='/var/www/yum/SIMP/GPGKEYS'
+  if [ ! -d $dir ]; then
+    mkdir -p -m 0755 "${dir}"
   fi
-done
+  cp %{prefix}/RPM-GPG-KEY* "${dir}"
 
-if [ -f $old_key_list ]; then
-  rm -f $old_key_list
-fi
+  # Get rid of any files that are present that aren't in the new directory.
+  # Ensure that we don't have issues with operations in progress.
+  old_key_list=`mktemp --suffix=.simp_gpgkeys`
+  new_key_list=`mktemp --suffix=.simp_gpgkeys`
 
-if [ -f $new_key_list ]; then
-  rm -f $new_key_list
-fi
+  find "${dir}" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $old_key_list
+  find "%{prefix}" -name "RPM-GPG-KEY*" -maxdepth 1 -printf "%f\n" | sort -u > $new_key_list
 
-# Link system GPG keys into SIMP repo
-if [ `facter operatingsystem` == 'CentOS' ]; then
-  search_string='.*CentOS-[[:digit:]]'
-elif [ `facter operatingsystem` == 'RedHat' ]; then
-  search_string='.*redhat.*release.*'
-else
-  search_string=''
-fi
-if [ -n "$search_string" ]; then
-  for file in `find /etc/pki/rpm-gpg/ -regextype posix-extended -regex ${search_string}`; do
-    cp ${file} ${dir}/GPGKEYS
+  for file in `comm -23 $old_key_list $new_key_list`; do
+    if [ -f "${dir}/${file}" ]; then
+      rm -f "${dir}/${file}"
+    fi
   done
-fi
 
-# Ensure GPG permissions
-chown -R root:48 ${dir}/GPGKEYS/
-find ${dir}/GPGKEYS/ -type f -exec chmod 640 {} +
+  if [ -f $old_key_list ]; then
+    rm -f $old_key_list
+  fi
+
+  if [ -f $new_key_list ]; then
+    rm -f $new_key_list
+  fi
+
+  # Link system GPG keys into SIMP repo
+  if [ `facter operatingsystem` == 'CentOS' ]; then
+    search_string='.*CentOS-[[:digit:]]'
+  elif [ `facter operatingsystem` == 'RedHat' ]; then
+    search_string='.*redhat.*release.*'
+  else
+    search_string=''
+  fi
+  if [ -n "$search_string" ]; then
+    for file in `find /etc/pki/rpm-gpg/ -regextype posix-extended -regex ${search_string}`; do
+      cp ${file} ${dir}
+    done
+  fi
+  # Ensure GPG permissions
+  chown -R root:48 ${dir}
+  find ${dir} -type f -exec chmod 640 {} +
+fi
 
 %changelog
+* Thu Apr 22 2021 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.2-1
+- Fixed a bug where the GPG keys were copied into /var/www/yum/SIMP/GPGKEYS/
+  during the post install, even if /var/www/yum/SIMP/ did not exist.
+- Fixed a bug where the copy of the GPG keys into /var/www/yum/SIMP/GPGKEYS/
+  during the post install failed, when /var/www/yum/SIMP/ existed but
+  /var/www/yum/SIMP/GPGKEYS/ did not exist.
+
 * Tue Dec 17 2019 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.1-0
 - Added the CentOS8 and EPEL 8 GPGkeys
 
