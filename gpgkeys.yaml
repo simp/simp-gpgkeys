@@ -31,6 +31,10 @@
   :name: RPM-GPG-KEY-puppet
   :fingerprint: 6F6B 1550 9CF8 E59E 6E46  9F32 7F43 8280 EF8D 349F
   :source_url: https://yum.puppetlabs.com/RPM-GPG-KEY-puppet
+:puppet-20250406:
+  :name: RPM-GPG-KEY-puppet-20250406
+  :fingerprint: D681 1ED3 ADEE B844 1AF5  AA8F 4528 B6CD 9E61 EF26
+  :source_url: https://yum.puppet.com/RPM-GPG-KEY-puppet-20250406
 :puppetlabs:
   :name: RPM-GPG-KEY-puppetlabs
   :fingerprint: 47B3 20EB 4C7C 375A A9DA  E1A0 1054 B7A2 4BD6 EC30

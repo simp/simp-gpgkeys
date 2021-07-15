@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.1.2
+Version: 3.1.3
 Release: 1
 License: Public Domain
 Group: Applications/System
@@ -94,6 +94,9 @@ if [ -d '/var/www/yum/SIMP' ]; then
 fi
 
 %changelog
+* Thu Jul 15 2021 Brandon Riden <brandon.riden@onyxpoint.com> - 3.1.3-1
+- Add the new Puppet GPG key
+
 * Thu Apr 22 2021 Jeanne Greulich <jeanne.greulich@gmail.com> - 3.1.2-1
 - Fixed a bug where the GPG keys were copied into /var/www/yum/SIMP/GPGKEYS/
   during the post install, even if /var/www/yum/SIMP/ did not exist.
