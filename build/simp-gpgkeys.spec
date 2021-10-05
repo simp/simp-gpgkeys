@@ -1,13 +1,17 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.1.3
+Version: 3.1.4
 Release: 1
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
+%if 0%{?rhel} > 7
+Recommends: facter
+%else
 Requires: facter
+%endif
 
 Prefix: %{_datadir}/simp/GPGKEYS
 
@@ -94,6 +98,9 @@ if [ -d '/var/www/yum/SIMP' ]; then
 fi
 
 %changelog
+* Tue Oct 05 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.1.4-1
+- Ensusure that packages are not removed on EL8 when this package is uninstalled
+
 * Thu Jul 15 2021 Brandon Riden <brandon.riden@onyxpoint.com> - 3.1.3-1
 - Add the new Puppet GPG key
 
