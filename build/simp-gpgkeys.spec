@@ -1,7 +1,7 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
 Version: 3.1.4
-Release: 1
+Release: 1%{?dist}
 License: Public Domain
 Group: Applications/System
 Source: %{name}-%{version}-%{release}.tar.gz
