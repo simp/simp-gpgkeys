@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.1.4
+Version: 3.1.5
 Release: 1%{?dist}
 License: Public Domain
 Group: Applications/System
@@ -8,9 +8,9 @@ Source: %{name}-%{version}-%{release}.tar.gz
 Buildroot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Buildarch: noarch
 %if 0%{?rhel} > 7
-Recommends: facter
+Recommends: puppet-agent
 %else
-Requires: facter
+Requires: puppet-agent
 %endif
 
 Prefix: %{_datadir}/simp/GPGKEYS
@@ -98,6 +98,9 @@ if [ -d '/var/www/yum/SIMP' ]; then
 fi
 
 %changelog
+* Wed Oct 06 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.1.5-1
+- Work around missing 'Provides: facter' in puppet 7+
+
 * Tue Oct 05 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.1.4-1
 - Ensusure that packages are not removed on EL8 when this package is uninstalled
 
