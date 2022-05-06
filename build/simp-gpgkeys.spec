@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.1.5
+Version: 3.2.0
 Release: 1%{?dist}
 License: Public Domain
 Group: Applications/System
@@ -98,6 +98,10 @@ if [ -d '/var/www/yum/SIMP' ]; then
 fi
 
 %changelog
+* Fri May 06 2022 Trevor Vaughan <tvaughan@sicura.us> - 3.2.0-1
+- Remove EL6 keys
+- Update the Red Hat key
+
 * Wed Oct 06 2021 Trevor Vaughan <tvaughan@onyxpoint.com> - 3.1.5-1
 - Work around missing 'Provides: facter' in puppet 7+
 

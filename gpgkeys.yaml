@@ -1,8 +1,4 @@
 ---
-:CentOS-6:
-  :name: RPM-GPG-KEY-CentOS-6
-  :fingerprint: C1DA C52D 1664 E8A4 386D  BA43 0946 FCA2 C105 B9DE
-  :source_url: http://vault.centos.org/RPM-GPG-KEY-CentOS-6
 :CentOS-7:
   :name: RPM-GPG-KEY-CentOS-7
   :fingerprint: 6341 AB27 53D7 8A78 A7C2  7BB1 24C6 A8A7 F4A8 0EB5
@@ -11,10 +7,6 @@
   :name: RPM-GPG-KEY-CentOS-8
   :fingerprint: 99DB 70FA E1D7 CE22 7FB6  4882 05B5 55B3 8483 C65D
   :source_url: https://www.centos.org/keys/RPM-GPG-KEY-CentOS-Official
-:EPEL-6:
-  :name: RPM-GPG-KEY-EPEL-6
-  :fingerprint: 8C3B E96A F230 9184 DA5C  0DAE 3B49 DF2A 0608 B895
-  :source_url: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-6
 :EPEL-7:
   :name: RPM-GPG-KEY-EPEL-7
   :fingerprint: 91E9 7D7C 4A5E 96F1 7F3E  888F 6A2F AEA2 352C 64E5
@@ -42,11 +34,7 @@
 :redhat-release:
   :name: RPM-GPG-KEY-redhat-release
   :fingerprint: 567E 347A D004 4ADE 55BA  8A5F 199E 2F91 FD43 1D51
-  :source_url: https://www.redhat.com/security/data/fd431d51.txt #bad
-:SIMP:
-  :name: RPM-GPG-KEY-SIMP
-  :fingerprint: 103B 439D ADF4 AE61 FA69  98AF EE8C 77AF 7DA6 F216
-  :source_url: https://download.simp-project.com/SIMP/GPGKEYS/RPM-GPG-KEY-SIMP
+  :source_url: https://www.redhat.com/security/data/fd431d51.txt
 :SIMP-6:
   :name: RPM-GPG-KEY-SIMP-6
   :fingerprint: F21E A54D 9C5A A9A5 AF7F  E002 1B5B 16A2 7667 220F
