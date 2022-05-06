@@ -18,9 +18,12 @@ task :fingerprint do
 end
 
 task :download do
+  %x( rm GPGKEYS/* )
+
   keys = YAML.load_file('gpgkeys.yaml')
   keys.each do |key,info|
     # require 'pry';binding.pry
+    puts "Downloading #{info[:source_url]}"
     content = open(info[:source_url]).read
     File.write("GPGKEYS/#{info[:name]}", content)
   end
