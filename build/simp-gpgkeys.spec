@@ -35,6 +35,7 @@ mkdir -p %{buildroot}/%{prefix}
 # Now install the files.
 cp GPGKEYS/RPM-GPG-KEY-puppet* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 cp GPGKEYS/RPM-GPG-KEY-SIMP* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
+cp GPGKEYS/RPM-GPG-KEY-SICURA* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 cp GPGKEYS/* %{buildroot}/%{prefix}
 
 %clean

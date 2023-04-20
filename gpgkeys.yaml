@@ -39,3 +39,7 @@
   :name: RPM-GPG-KEY-SIMP-6
   :fingerprint: F21E A54D 9C5A A9A5 AF7F  E002 1B5B 16A2 7667 220F
   :source_url: https://download.simp-project.com/SIMP/GPGKEYS/RPM-GPG-KEY-SIMP-6
+:SICURA-CE-RELEASE:
+  :name: RPM-GPG-KEY-SICURA-CE-RELEASE
+  :fingerprint: 2293 20F8 7B17 6B94 8F01  9230 750F 0DDC 05A0 551B
+  :source_url: https://download.simp-project.com/SIMP/GPGKEYS/RPM-GPG-KEY-SICURA-CE-RELEASE
