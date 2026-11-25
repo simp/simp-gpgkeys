@@ -1,6 +1,6 @@
 Summary: GPGKEYS
 Name: simp-gpgkeys
-Version: 3.2.0
+Version: 4.0.0
 Release: 1%{?dist}
 License: Public Domain
 Group: Applications/System
@@ -33,6 +33,7 @@ mkdir -p %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 mkdir -p %{buildroot}/%{prefix}
 
 # Now install the files.
+cp GPGKEYS/RPM-GPG-KEY-openvox %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 cp GPGKEYS/RPM-GPG-KEY-puppet* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 cp GPGKEYS/RPM-GPG-KEY-SIMP* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
 cp GPGKEYS/RPM-GPG-KEY-SICURA* %{buildroot}/%{_sysconfdir}/pki/rpm-gpg
@@ -48,7 +49,6 @@ cp GPGKEYS/* %{buildroot}/%{prefix}
 
 %post
 #!/bin/bash
-export PATH=/opt/puppetlabs/bin:$PATH
 
 # If we're a SIMP server, place the keys into the appropriate web directory
 if [ -d '/var/www/yum/SIMP' ]; then
@@ -81,15 +81,17 @@ if [ -d '/var/www/yum/SIMP' ]; then
   fi
 
   # Link system GPG keys into SIMP repo
-  if [ `facter operatingsystem` == 'CentOS' ]; then
-    search_string='.*CentOS-[[:digit:]]'
-  elif [ `facter operatingsystem` == 'RedHat' ]; then
-    search_string='.*redhat.*release.*'
-  else
-    search_string=''
-  fi
+  os_id=`. /etc/os-release && echo "${ID}"`
+  case "${os_id}" in
+    rhel)      search_string='.*redhat.*release.*' ;;
+    centos)    search_string='.*/RPM-GPG-KEY-(CentOS-[[:digit:]]+|centosofficial.*)' ;;
+    rocky)     search_string='.*/RPM-GPG-KEY-(Rocky-[[:digit:]]+|rockyofficial)' ;;
+    almalinux) search_string='.*/RPM-GPG-KEY-AlmaLinux(-[[:digit:]]+)?' ;;
+    ol)        search_string='.*/RPM-GPG-KEY-oracle' ;;
+    *)         search_string='' ;;
+  esac
   if [ -n "$search_string" ]; then
-    for file in `find /etc/pki/rpm-gpg/ -regextype posix-extended -regex ${search_string}`; do
+    for file in `find /etc/pki/rpm-gpg/ -regextype posix-extended -regex "${search_string}"`; do
       cp ${file} ${dir}
     done
   fi
@@ -99,6 +101,16 @@ if [ -d '/var/www/yum/SIMP' ]; then
 fi
 
 %changelog
+* Wed Nov 25 2026 Hazel Caballero <hazel@sicura.us> - 4.0.0-1
+- Add the OpenVox, EPEL 9 and EPEL 10 keys. The OpenVox key is also
+  installed in /etc/pki/rpm-gpg.
+- BREAKING: Remove the EL7-only CentOS-7 and EPEL-7 keys. After the upgrade,
+  a SIMP server no longer serves them from /var/www/yum/SIMP/GPGKEYS.
+- Copy the OS release keys into /var/www/yum/SIMP/GPGKEYS on AlmaLinux,
+  Rocky Linux, Oracle Linux and CentOS Stream, not just RHEL and CentOS.
+- Identify the OS from /etc/os-release, so copying the OS release keys no
+  longer needs facter.
+
 * Fri May 06 2022 Trevor Vaughan <tvaughan@sicura.us> - 3.2.0-1
 - Remove EL6 keys
 - Update the Red Hat key

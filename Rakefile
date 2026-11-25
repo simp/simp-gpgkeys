@@ -8,13 +8,13 @@ Simp::Rake::Pkg.new(File.dirname( __FILE__ ) )
 
 task :fingerprint do
   keys = YAML.load_file('gpgkeys.yaml')
-  keys.each do |key, info|
-    fingerprint = info[:fingerprint]
-    name = info[:name]
-    unless `gpg --with-fingerprint GPGKEYS/#{info[:name]}` =~ /#{fingerprint}/
-      puts "key #{info[:name]} doesn't match fingerprint #{fingerprint}"
-    end
+  mismatched = keys.values.reject do |info|
+    `gpg --show-keys --with-fingerprint GPGKEYS/#{info[:name]}`.include?(info[:fingerprint])
   end
+  mismatched.each do |info|
+    puts "key #{info[:name]} doesn't match fingerprint #{info[:fingerprint]}"
+  end
+  abort("#{mismatched.size} key(s) failed the fingerprint check") unless mismatched.empty?
 end
 
 task :download do
@@ -22,9 +22,8 @@ task :download do
 
   keys = YAML.load_file('gpgkeys.yaml')
   keys.each do |key,info|
-    # require 'pry';binding.pry
     puts "Downloading #{info[:source_url]}"
-    content = open(info[:source_url]).read
+    content = URI.open(info[:source_url]).read
     File.write("GPGKEYS/#{info[:name]}", content)
   end
 end
